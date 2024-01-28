@@ -33,7 +33,6 @@ export const createProduct = async (req, res, next) => {
     color: product.color || "One Color",
     qut: product.qut || "1",
   }));
-
   const Product_Color_Size = await Product_Color_SizeModel.create({ productId: newProduct._id, products: productListInfo });
   if (!newProduct || !Product_Color_Size) {
     return next(new Error("create product unsuccessfully", { cause: 400 }));
@@ -278,7 +277,6 @@ export const showcolor_size_qutupdate = async (req, res, next) => {
   const existingInfo = await Product_Color_SizeModel.findOne({ productId });
   return res.json({ message: 'success', existingInfo })
 }
-//
 export const showgeneralinfoforproduct = async (req, res, next) => {
   const { productId } = req.params;
   const product = await productModel.findOne({
