@@ -33,7 +33,7 @@ router.get('/', auth([roles.Customer]), asyncHandler(productController.getWishLi
 router.patch('/like/:productId', auth([roles.Customer]), validation(validators.likeProductSchema), asyncHandler(productController.likeProduct));
 router.patch('/unlike/:productId', auth([roles.Customer]), validation(validators.unlikeProductSchema), asyncHandler(productController.unlikeProduct));
 
-router.get('/showcolor_size_qutupdate/:productId', auth([roles.stakeHolder]), asyncHandler(productController.showcolor_size_qutupdate));
+router.get('/showcolor_size_qutupdate/:productId', auth([roles.stakeHolder,roles.Admin,roles.Customer]), asyncHandler(productController.showcolor_size_qutupdate));
 router.get('/showgeneralinfoforproduct/:productId', auth([roles.stakeHolder]), asyncHandler(productController.showgeneralinfoforproduct));
 router.get(
     '/getspecficProductForSpecificStore/:categoryId/:stakeHolderId/:productId',
