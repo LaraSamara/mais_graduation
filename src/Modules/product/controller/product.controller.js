@@ -149,7 +149,6 @@ export const color_size_qutupdate = async (req, res, next) => {
     _id: productId,
     deletedAt: false,
     $or: [
-      { createdBy: req.user._id },
       { role: 'Admin' } // Assuming 'Admin' is the role value for an admin user
     ]
   });
