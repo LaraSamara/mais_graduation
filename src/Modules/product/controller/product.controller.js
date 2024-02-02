@@ -148,9 +148,8 @@ export const color_size_qutupdate = async (req, res, next) => {
   const product = await productModel.findOne({
     _id: productId,
     deletedAt: false,
-    $or: [
-      { role: 'Admin' } // Assuming 'Admin' is the role value for an admin user
-    ]
+    createdBy: req.user._id 
+      
   });
   if (!product) {
     return next(new Error('This product was not found', { cause: 400 }));
@@ -268,7 +267,6 @@ export const showcolor_size_qutupdate = async (req, res, next) => {
   const product = await productModel.findOne({
     _id: productId,
     deletedAt: false,
-    createdBy: req.user._id,
   });
   if (!product) {
     return next(new Error('This product was not found', { cause: 400 }));
