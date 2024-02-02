@@ -13,6 +13,7 @@ const cartSchema=new Schema({
         color:{ type:String,required:true},
         size:{type:String,required:true},
         stockholder:{type:Types.ObjectId,ref:'User',required:true},
+        mainImage:{type:Object,required:true},
         _id:false
     }]
 },

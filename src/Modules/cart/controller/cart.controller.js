@@ -32,7 +32,7 @@ export const addToCart = async (req, res, next) => {
     }
     const cart = await cartModel.findOne({ userId: req.user._id });
     if (!cart) {
-        const newCart = await cartModel.create({ userId: req.user._id, products: [{ productId, qty, color, size, productName: checkProduct.name, productColorSize: product._id, stockholder: checkProduct.createdBy }] });
+        const newCart = await cartModel.create({ userId: req.user._id, products: [{ productId, qty, color, size, productName: checkProduct.name, productColorSize: product._id, stockholder: checkProduct.createdBy,mainImage:checkProduct.mainImage }] });
         return res.status(201).json({ message: "success", newCart });
     }
     let matchProduct = false;
@@ -44,7 +44,7 @@ export const addToCart = async (req, res, next) => {
         }
     }
     if (!matchProduct) {
-        cart.products.push({ productId, productName: checkProduct.name, qty, color, size, productColorSize: product._id, stockholder: checkProduct.createdBy });
+        cart.products.push({ productId, productName: checkProduct.name, qty, color, size, productColorSize: product._id, stockholder: checkProduct.createdBy,mainImage:checkProduct.mainImage });
     }
     await cart.save();
     return res.json({ message: "success", cart });
